@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.1.dtd" >
-<suite name="Suite1">
-    <test name="InetShopTest" thread-count="3" parallel="tests">
+<suite name="Suite1" thread-count="5" parallel="tests">
+    <test name="InetShopTest">
         <classes>
             <class name="com.mobile.test.InetShopTest">
                 <methods>
@@ -15,10 +15,10 @@
         <groups>
             <run name="orderGroup1"/>
             <run name="orderGroup2" dependsOn="orderGroup1"/>
-            <run name="orderGroup2" dependsOn="orderGroup1, orderGroup2"/>
+            <run name="orderGroup3" dependsOn="orderGroup1, orderGroup2"/>
         </groups>
     </test>
-    <test name="PriorityTest" thread-count="3">
+    <test name="PriorityTest">
         <classes>
             <class name="com.mobile.test.PriorityTest"/>
             <class name="com.mobile.test.OrderTest"/>
