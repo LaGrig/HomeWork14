@@ -14,7 +14,8 @@
         </classes>
         <groups>
             <run name="orderGroup1"/>
-            <run name="orderGroup2" dependsOnGroups="orderGroup1"/>
+            <run name="orderGroup2" dependsOn="orderGroup1"/>
+            <run name="orderGroup2" dependsOn="orderGroup1, orderGroup2"/>
         </groups>
     </test>
     <test name="PriorityTest" thread-count="3">
