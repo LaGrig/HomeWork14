@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.1.dtd" >
+
+<suite name = "Suite1">
+    <test name = "InetShopTest" thread-count="3" parallel="tests">
+        <classes>
+            <class name = "com.mobile.test.InetShopTest">
+                <methods>
+                    <include name="login"/>
+                    <include name="signup"/>
+                    <include name="functionality0"/>
+                    <include name="functionality1"/>
+                    <include name="functionality2"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name = "PriorityTest" thread-count="3">
+        <classes>
+            <class name = "com.mobile.test.PriorityTest" />
+            <class name = "com.mobile.test.OrderTest" />
+        </classes>
+    </test>
+</suite>
