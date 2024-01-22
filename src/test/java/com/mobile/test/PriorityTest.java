@@ -4,17 +4,17 @@ import org.testng.annotations.Test;
 
 public class PriorityTest {
 
-    @Test(priority = 1)
+    @Test(groups = {"orderGroup1"}, priority = 1)
     public void firstTest() {
         System.out.println("priorityTest::firstTest @ " + Thread.currentThread().getName());
     }
 
-    @Test(priority = 2)
+    @Test(groups = {"orderGroup2"}, priority = 2)
     public void secondTest() {
         System.out.println("priorityTest::secondTest @ " + Thread.currentThread().getName());
     }
 
-    @Test(priority = 3)
+    @Test(groups = {"orderGroup3"}, priority = 3)
     public void thirdTest() {
         System.out.println("priorityTest::thirdTest @ " + Thread.currentThread().getName());
     }
