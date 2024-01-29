@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.1.dtd" >
+<suite name="Homework_13" thread-count="5" parallel="tests">
+    <test name="InetShopTest">
+        <classes>
+            <class name="com.mobile.test.JSONObjectTest"/>
+            <class name="com.mobile.test.JacksonTest"/>
+        </classes>
+    </test>
+</suite>

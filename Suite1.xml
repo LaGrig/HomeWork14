@@ -12,11 +12,6 @@
                 </methods>
             </class>
         </classes>
-        <groups>
-            <run name="orderGroup1"/>
-            <run name="orderGroup2" dependsOn="orderGroup1"/>
-            <run name="orderGroup3" dependsOn="orderGroup1, orderGroup2"/>
-        </groups>
     </test>
     <test name="PriorityTest">
         <classes>
