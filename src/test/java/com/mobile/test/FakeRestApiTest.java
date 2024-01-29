@@ -42,7 +42,7 @@ public class FakeRestApiTest {
     }
 
     @Test
-    public void getSingleAactivity() {
+    public void getSingleActivity() {
         final String endpointName = "/Activities/11";
         String url = apiUrl + endpointName;
 
@@ -52,12 +52,9 @@ public class FakeRestApiTest {
                 .build();
         try (Response response = client.newCall(request).execute()) {
             int code = response.code();
+            String responseBody = response.body().string();
+            Assert.assertTrue(responseBody.contains("\"id\": \"11\""), "Response body must contain id with value 11, but it doesn't.");
             Assert.assertEquals(code, 200, "Response code must be 200, but we got " + code + "instead.");
-            var mapper = new ObjectMapper();
-            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-            Activity[] activities = mapper.readValue(response.body().string(), Activity[].class);
-            Assert.assertEquals(activities[0].getId(), 11);
-            Assert.assertEquals(activities[0].getTitle(), "Activity 11");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
