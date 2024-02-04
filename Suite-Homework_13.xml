@@ -4,6 +4,7 @@
         <classes>
             <class name="com.mobile.test.JSONObjectTest"/>
             <class name="com.mobile.test.JacksonTest"/>
+            <class name="com.mobile.test.FakeRestApiTest"/>
         </classes>
     </test>
 </suite>

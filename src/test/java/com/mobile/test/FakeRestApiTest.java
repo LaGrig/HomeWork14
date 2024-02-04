@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -79,5 +80,35 @@ public class FakeRestApiTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Test
+    public void postActivities() throws IOException {
+        final String endpoint = "/Activities";
+        String url = apiUrl+endpoint;
+
+        String addActivity =
+                "{\n" +
+                "  \"id\": 0,\n" +
+                "  \"title\": \"string\",\n" +
+                "  \"dueDate\": \"2024-02-04T18:57:18.126Z\",\n" +
+                "  \"completed\": true\n" +
+                "}";
+
+        String expectedResponse = "{\"id\":0,\"title\":\"string\",\"dueDate\":\"2024-02-04T18:57:18.126Z\",\"completed\":true}";
+
+        JSONObject json = new JSONObject(addActivity);
+
+        Request request = new Request.Builder()
+                .url(url)
+                .header("accept", "*/*")
+                .method("POST", RequestBody.create(String.valueOf(json), MediaType.get("application/json")))
+                .build();
+        Response response = client.newCall(request).execute();
+        int code = response.code();
+        Assert.assertEquals(code, 200);
+
+        String responseBody = response.body().string();
+        Assert.assertEquals(responseBody, expectedResponse);
     }
 }
