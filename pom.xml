@@ -88,7 +88,8 @@
                         </goals>
                         <configuration>
                             <glue>org.example</glue>
-                            <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
+                            <outputDirectory>${project.build.directory}/generated-test-sources/cucumber
+                            </outputDirectory>
                             <featuresDirectory>src/test/resources/features/</featuresDirectory>
                             <cucumberOutputDir>target/cucumber-reports</cucumberOutputDir>
                             <format>json</format>
