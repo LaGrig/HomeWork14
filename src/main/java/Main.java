@@ -15,10 +15,14 @@ import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 public class Main {
     private static final String FILE_NAME = "src/main/resources/smartphones100.csv";
+
+    private static Logger logger;
 
     static String[] readFileWithBufferReader(String filename) {
         ArrayList<String> data = new ArrayList<>();
@@ -59,28 +63,37 @@ public class Main {
                         Double.parseDouble(pieces[4]), Integer.parseInt(pieces[5]), pieces[6],
                         Boolean.parseBoolean(pieces[7]), Integer.parseInt(pieces[8]),
                         Integer.parseInt(pieces[9]), Integer.parseInt(pieces[10]));
+                logger.log(Level.SEVERE, "Create Apple smartphone: " + currentSmartphone);
                 break;
             case "samsung":
                 currentSmartphone = new Samsung(pieces[0], pieces[1], pieces[2], Integer.parseInt(pieces[3]),
                         Double.parseDouble(pieces[4]), Integer.parseInt(pieces[5]), pieces[6],
                         Boolean.parseBoolean(pieces[7]), Integer.parseInt(pieces[8]),
                         Integer.parseInt(pieces[9]), Integer.parseInt(pieces[10]));
+                logger.log(Level.WARNING, "Create Samsung smartphone: " + currentSmartphone);
                 break;
             case "huawei":
                 currentSmartphone = new Huawei(pieces[0], pieces[1], pieces[2], Integer.parseInt(pieces[3]),
                         Double.parseDouble(pieces[4]), Integer.parseInt(pieces[5]), pieces[6],
                         Boolean.parseBoolean(pieces[7]), Integer.parseInt(pieces[8]), Integer.parseInt(pieces[9]), Integer.parseInt(pieces[10]));
+                logger.log(Level.INFO, "Create Huawei smartphone: " + currentSmartphone);
                 break;
             case "xiaomi":
                 currentSmartphone = new Xiaomi(pieces[0], pieces[1], pieces[2], Integer.parseInt(pieces[3]),
                         Double.parseDouble(pieces[4]), Integer.parseInt(pieces[5]), pieces[6],
                         Boolean.parseBoolean(pieces[7]), Integer.parseInt(pieces[8]), Integer.parseInt(pieces[9]), Integer.parseInt(pieces[10]));
+                logger.log(Level.FINE, "Create Xiaomi smartphone: " + currentSmartphone);
                 break;
         }
         return currentSmartphone;
     }
 
     public static void main(String[] args) {
+    System.setProperty("java.util.logging.config.file", System.getenv("LOG_CONFIG_FILE"));
+
+        logger = Logger.getLogger(Main.class.getName());
+        logger.log(Level.CONFIG, "Going to read DATA fom file:" + FILE_NAME);
+
         long timerStart = System.currentTimeMillis();
         Set<Smartphone> currentSmartphone = new LinkedHashSet<>();
         long importFileTimerStart = System.currentTimeMillis();
